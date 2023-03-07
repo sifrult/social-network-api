@@ -1,5 +1,3 @@
-// const { User, Thought, Reaction } = require('../models');
-
 const users = [
     {
         username: "Lernan",
@@ -24,15 +22,13 @@ const thoughts = [
     {
         thoughtText: "Here's a cool thought...",
         username: "Lernan",
-        reactions: []
+        reactions: [
+            {
+                reactionBody: "Cool thought, Lernan!",
+                username: "Meg"
+            }
+        ]
     }
 ]
 
-const reactions = [
-    {
-        reactionBody: "Cool thought, Lernan!",
-        username: "Meg"
-    }
-]
-
-module.exports = {users, thoughts, reactions}
+module.exports = {users, thoughts}
