@@ -15,10 +15,11 @@ module.exports = {
                 return User.findOneAndUpdate(
                     { _id: req.body.userId },
                     { $addToSet: { thoughts: thought._id } },
+                    { runValidators: true, new: true }
                 ).then(() => thought)
             })
             .then((thought) => res.json(thought))
-            .catch((err) => {console.log(err);res.status(500).json(err)})
+            .catch((err) => res.status(500).json(err))
     },
 
     // Get thought by ID
@@ -60,7 +61,18 @@ module.exports = {
     },
 
     // Add reaction to thought
-    createReaction(req, res) {},
+    createReaction(req, res) {
+        Thought.findOneAndUpdate(
+            { _id: req.params.thoughtId },
+            { $addToSet: { reactions: req.body } },
+            { runValidators: true, new: true }
+        )
+        .then((thought) =>
+            !thought
+            ? res.status(404).json({ message: 'No thought with that ID' })
+            : res.json(thought)
+        )
+    },
 
     // Delete reaction from thought
     deleteReaction(req, res) {}
