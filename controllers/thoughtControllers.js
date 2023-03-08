@@ -46,6 +46,7 @@ module.exports = {
             ? res.status(404).json({ message: 'No thought with that ID' })
             : res.json(thought)
         )
+        .catch((err) => res.status(500).json(err))
     },
 
     // Delete thought by ID
@@ -72,6 +73,7 @@ module.exports = {
             ? res.status(404).json({ message: 'No thought with that ID' })
             : res.json(thought)
         )
+        .catch((err) => res.status(500).json(err))
     },
 
     // Delete reaction from thought
@@ -86,5 +88,6 @@ module.exports = {
             ? res.status(404).json({ message: 'No thought with that ID' })
             : res.json(thought)
         )
+        .catch((err) => res.status(500).json(err))
     }
 }
