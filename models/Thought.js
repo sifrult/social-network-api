@@ -20,10 +20,11 @@ const thoughtsSchema = new Schema(
         reactions: [reactionSchema]
     },
     {
-        timestamps: true,
+        // timestamps: true,
         toJSON: {
-            getters: true,
-        }
+            virtuals: true,
+        },
+        id: false
     }
 )
 
