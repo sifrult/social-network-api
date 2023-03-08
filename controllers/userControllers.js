@@ -1,9 +1,10 @@
-const User = require('../models/User');
+const {User} = require('../models');
 
 module.exports = {
     // Get all users
     getUsers(req, res) {
         User.find({})
+
             .then((users) => res.json(users))
             .catch((err) => res.status(500).json(err))
     },
@@ -11,13 +12,14 @@ module.exports = {
     // Create one user
     createUser(req, res) {
         User.create(req.body)
-            .then((dbUserData) => res.json(dbUserData))
+            .then((user) => res.json(user))
             .catch((err) => res.status(500).json(err))
     },
 
     // Get user by ID
     getSingleUser(req, res) {
         User.findOne({ _id: req.params.userId })
+            .populate('thoughts')
             .select('-__v')
             .then((user) =>
                 !user
