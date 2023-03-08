@@ -1,6 +1,8 @@
 const connection = require('../config/connection');
 const {User, Thought} = require('../models');
-const {users, thoughts} = require('./data');
+const {getRandUsername, getRandThought, getRandReaction} = require('./data');
+
+
 
 connection.once('open', async () => {
     await User.deleteMany({});
