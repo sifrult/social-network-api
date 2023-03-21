@@ -55,7 +55,11 @@ module.exports = {
         .then((thought) =>
             !thought
             ? res.status(404).json({ message: 'No thought with that ID' })
-            : console.log('Gotta delete the reactions here in this line')
+            : User.findOneAndUpdate(
+                { thoughts: req.params.thoughtId },
+                { $pull: { thoughts: req.params.thoughtId } },
+                { runValidators: true, new: true }
+            )
         )
         .then(() => res.json({ message: 'Thought deleted' }))
         .catch((err) => res.status(500).json(err))
@@ -79,9 +83,9 @@ module.exports = {
     // Delete reaction from thought
     deleteReaction(req, res) {
         Thought.findOneAndUpdate(
-            { _id: req.params.thoughtId},
+            { _id: req.params.thoughtId },
             { $pull: { reactions: { reactionId: req.params.reactionId } } },
-            { runValidators: true, new: true}
+            { runValidators: true, new: true }
         )
         .then((thought) =>
             !thought
