@@ -21,4 +21,4 @@ Then, use a program to test the API ends (like Insomnia).
 ## Visuals
 The following video shows an example of the application being used from Insomnia.
 
-[![Video thumbnail](screenshot)](link)
+[![Video thumbnail](./assets/Screenshot.png)](https://drive.google.com/file/d/1A_cws0QleAxc-xxf2wcb7lVLTCGiGQfl/view)
